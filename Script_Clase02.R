@@ -59,7 +59,7 @@ names(d1) # muestra los nombres de las variables
 head(d1) # da las primeras 6 observaciones de la base de dato
 tail(d1) # da los 6 ultimas lineas de observaciones de la base de dato
 
-rm(l1) # elimina una variable
+rm(l1) # elimina una varible
 
 #Bonus: como se borra todo?
 
@@ -108,6 +108,7 @@ head(d1)
 #---- Part 2: Loops  -------------------
 
 A<-2
+dim(A)
 
 if(A==1){
   print("A es un objeto con un elemento numérico 1")
