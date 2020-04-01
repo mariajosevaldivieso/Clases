@@ -26,7 +26,7 @@ mas_dias <- data.table(read_excel("COVID_19_from_01_03_2020_to_29_03_2020_all.xl
 ```
 
 ### Clase de las bases y de sus columnas
-Es bueno tener en cuenta, en primera instancia, con la clase de datos que vamos a estar trabajando. Muchas veces ocurre que datos numéricos se encuentran codificados como clase "character" o "factor", lo que dificultael trabajo con funciones descriptivas para hacer análisis básico de los datos. Se puede observar rápidamente la clase de cada una de las variables/columnas de las bases de datos respectivas mediante las funciones "str" y "sapply":
+Es bueno tener en cuenta, en primera instancia, con la clase de datos que vamos a estar trabajando. Muchas veces ocurre que datos numéricos se encuentran codificados como clase "character" o "factor", lo que dificulta el trabajo con funciones descriptivas para hacer análisis básico de los datos. Se puede observar rápidamente la clase de cada una de las variables/columnas de las bases de datos respectivas mediante las funciones "str" y "sapply":
 
 ```{r str vs. sapply}
 str(casos)
