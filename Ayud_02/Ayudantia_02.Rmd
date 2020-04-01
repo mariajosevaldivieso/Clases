@@ -2,7 +2,7 @@
 title: "Ayudantía 02"
 author: "Martín Sielfeld"
 date: "02-04-2020"
-output: word_document
+output: word_document ###3
 ---
 
 ```{r setup, include=FALSE}
