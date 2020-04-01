@@ -38,6 +38,7 @@ min(c(1,9,8,4,6,3,6,5,2))
 mean(c(1,9,8,4,6,3,6,5,2))
 median(c(1,9,8,4,6,3,6,5,2))
 quantile(c(1,9,8,4,6,3,6,5,2))
+quantile(seq(1,10,1))  #esta  forma me gustás
 ```
 
 ### Interacción

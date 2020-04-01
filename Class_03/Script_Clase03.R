@@ -8,7 +8,6 @@
 #---- Part 1: Data Management  -------------------
 
 # Reading an exporting data
-
 library(readxl)
 library(data.table)
 
@@ -19,21 +18,30 @@ casos<-data.table(read_excel("Class_02/2020-03-17-Casos-confirmados.xlsx",na = "
 names(casos)
 casos<-casos[Región=="Metropolitana",]
 
+<<<<<<< HEAD
 saveRDS(casos,"Class_03/casosRM.rds")
+=======
+saveRDS(casos, "Class_03/casosRM.rds")
 
-write.csv(casos,file = 'Class_03/CasosCovid_RM.csv',fileEncoding = 'UTF-8')
+write.csv(casos,file = 'Class_03/CasosCovid_RM.csv',fileEncoding = 'UTF-8') # crea un archivo para guardar. va en columnas
+>>>>>>> fac228fde920ac2252e20fb2cab94ed41159ed53
 
+
+<<<<<<< HEAD
 writexl::write_xlsx(casos,path = "Class_03/CasosenExcel.xlsx")
+=======
+writexl::write_xlsx()
+>>>>>>> fac228fde920ac2252e20fb2cab94ed41159ed53
 
-library(foreign)
+library(foreign) 
 
-write.dta
+write.dta # es para escribir en data
 
 
 
 casosRM<-fread("Class_03/CasosCovid_RM.csv",header = T, showProgress = T,data.table = T)
 
-casosRM[,table(Sexo)]
+casosRM[,table(Sexo)] # veo cuantos casos hay por caso
 casosRM[Sexo=="Fememino",Sexo:="Femenino"]
 
 
@@ -42,15 +50,23 @@ casosRM[Sexo=="Fememino",Sexo:="Femenino"]
 class(casosRM$Sexo)
 
 casosRM[,Sexo:=factor(Sexo)]
+<<<<<<< HEAD
+=======
+
+casosRM[,Sexo:=factor(Sexo,nmax = 2)]
+>>>>>>> fac228fde920ac2252e20fb2cab94ed41159ed53
 
 head(casosRM$Sexo)
 head(as.numeric(casosRM$Sexo))
 
-table(casosRM$Sexo)
+levels(casosRM$Sexo)
+
+table(casosRM$Sexo) 
 casosRM[,.N,by=.(Sexo)]
 casosRM[,.N,by=.(Sexo,`Centro de salud`)]
 
 #Collapsing by Centro de Salud 
+# TRATAR DE SUMAR LAS RANDES CATEGORIAS Y SUMAR LAS OBSERVACIONES Q UNO TIENE
 
 names(casosRM)
 obj1<-casosRM[,.N,by=.(`Centro de salud`)]
@@ -62,10 +78,19 @@ obj1[,porc:=N/sum(N,na.rm = T)]
 
 # collapsing (colapsar) by average age
 
+<<<<<<< HEAD
+=======
+objt1<-casosRM[,.N, by=.('Centro de salud')]
+               
+# collapsing by average age
+>>>>>>> fac228fde920ac2252e20fb2cab94ed41159ed53
+
+
 
 A<-casosRM[,.(AvAge=mean(Edad,na.rm = T)),by=.(`Centro de salud`)]
 
 B<-casosRM[,.(Total_centro=.N),by=.(`Centro de salud`)]
+<<<<<<< HEAD
 
 C<-casosRM[Sexo=="Femenino",.(Total_Centro_Mujeres=.N),by=.(`Centro de salud`)]
 
@@ -75,15 +100,29 @@ dim(A)
 dim(B)
 dim(C)
 dim(D)
+=======
 
+C<-casosRM[Sexo=="Femenino",.(Total_Centro_Mujeres=.N),by=.(`Centro de salud`)]
+
+D<-casosRM[Sexo=="Masculino",.(Total_Centro_Hombres=.N),by=.(`Centro de salud`)]
+>>>>>>> fac228fde920ac2252e20fb2cab94ed41159ed53
+
+dim(A)
+dim(B)
+dim(C)
+dim(D)
 
 #merging data sets
 
 
 AB<-merge(A,B,by = "Centro de salud",all = T,sort = F)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fac228fde920ac2252e20fb2cab94ed41159ed53
 ABC<-merge(AB,C,by = "Centro de salud",all = T,sort = F)
+
 ABCD<-merge(ABC,D,by = "Centro de salud",all = T,sort = F)
 
 ABCD[,porc_mujeres:=Total_Centro_Mujeres/Total_centro]
