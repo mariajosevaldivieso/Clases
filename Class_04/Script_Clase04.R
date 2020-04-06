@@ -99,30 +99,42 @@ G<-reshape(E,direction = 'wide',timevar = 'Sexo',v.names = c('AvAge','Casos conf
 
 #---- Part 2: Visualization  -------------------
 
-#Scatter plot
+#Scatter plot # GRAFICO CON DOS VARIABLES
 #Base R 
-plot(G$`Casos confirmados.Femenino`,G$`Casos confirmados.Masculino`)
-text(x =G$`Casos confirmados.Femenino`,y=G$`Casos confirmados.Masculino`, G$`Centro de salud`,cex=0.5)
+plot(G$`Casos confirmados.Femenino`,G$`Casos confirmados.Masculino`) # ANTES DE LA COMA ES UNA VARIABLE DESPUES DE ESTA ES LA OTRA VARIABLE. X Y DPS Y
+
+text(x =G$`Casos confirmados.Femenino`,y=G$`Casos confirmados.Masculino`, G$`Centro de salud`,cex=0.5) # 
 
 #ggplot2
 library(ggplot2)
-ggplot(data = G,mapping = aes(x=`Casos confirmados.Femenino`,y=`Casos confirmados.Masculino`))+geom_point()
+
+names (E)
+ggplot(data = E, mapping = aes(x = AvAge, y = `Casos confirmados`))  + geom_point() 
+# geom_point hace que en el grafico me aparezcan los puntos
+
+ggplot(data = G,mapping = aes(x=`Casos confirmados.Femenino`,y=`Casos confirmados.Masculino`)) + geom_point()
 
 ggplot(G,aes(x=`Casos confirmados.Femenino`,y=`Casos confirmados.Masculino`))+geom_point(aes(size=AvAge.Femenino,colour=AvAge.Masculino))+geom_text(aes(label=`Centro de salud`),size=2,check_overlap = T)
 
 ggplot(data = E,mapping = aes(x=AvAge,y=`Casos confirmados`))+geom_point()+facet_wrap(~Sexo)+geom_smooth(method = 'lm',se=F) + geom_smooth(method = 'loess',col='red',se=F)
 
+# geom_smooth me agrega una linea de tendencia
+
 
 #plotly
+install.packages('plotly')
 library(plotly)
+
 ggplotly(p1)
 
-#histograms
+#histograms 
+
 
 ggplot(casos,aes(x=Edad))+geom_histogram()
 ggplot(E,aes(x=AvAge))+geom_histogram()
 
 # Kernel Densities
+# cuando queir dibujar una linea sobre un histograma
 
 ggplot(E,aes(x=AvAge))+geom_density()
 ggplot(E,aes(x=AvAge,group=Sexo))+geom_density()
@@ -147,8 +159,10 @@ ggplot(casos,aes(x=Edad,group=Sexo,fill=Sexo))+geom_histogram()
 #https://chilecracia.org 
 
 #---- Part 3: Intro to Mapping  -------------------
-#install.packages("chilemapas")
-#install.packages("rgdal")
+install.packages("chilemapas")
+install.packages("rgdal")
+install.packages("sf")
+library(sf)
 library(rgdal)
 library(sp)
 library(chilemapas)
@@ -163,8 +177,9 @@ comunas_rm<-readOGR("Class_04/ComunasR13/COMUNA_C17.shp")
 class(comunas_rm)
 
 View(comunas_rm@data)
-plot(comunas_rm)
+plot(comunas_rm) # me grea un mapa
 
+coordinates(comunas_rm) # si le pongo un mapa poligono, me da el centro medio de cada poligono
 
 centroids_rm<-SpatialPoints(coordinates(comunas_rm),proj4string = comunas_rm@proj4string)
 plot(comunas_rm)
