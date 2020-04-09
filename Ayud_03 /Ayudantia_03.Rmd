@@ -2,7 +2,7 @@
 title: "Ayudantía 03"
 author: "Martín Sielfeld"
 date: "29-03-2020"
-output: html_document
+output: html_document.
 params:
   month: 1
 ---
