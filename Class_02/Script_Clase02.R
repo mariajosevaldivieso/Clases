@@ -20,7 +20,7 @@ as.numeric(y)
 
 A<-1
 
-year<-seq(2010, 2020, by= 0.5) 
+year<-seq(2010, 2020, by= 2) 
 tiktoc<-c("Que", "linda", "te ves", "limpiando", "Esperancita", 4)
 class(tiktoc)
 
@@ -30,7 +30,7 @@ as.numeric(numeros_en_textos)
 
 m1<-matrix(1:4,2,2) # tiene dos dimensiones, fila y columnas
 m1%*%t(m1) # multiplico la matriz m1 con su traspuesta
-diag(m1) # diagonal de la matriz m1ç
+diag(m1) # diagonal de la matriz m1
 solve(m1)
 
 a1<-array(1:12,dim = c(2,2,3)) # array es un elemento de 3 dimensiones, filas columnas y profundidad. primr elementi es fila, columna y densidad en ese orden
@@ -223,7 +223,7 @@ library(data.table)
 #https://github.com/rstudio/cheatsheets/raw/master/datatable.pdf
 #install.packages("data.table")
 quakes<-data.table(quakes)
-
+str(quakes)
 
 quakes[quakes$mag>6,'mag']
 
